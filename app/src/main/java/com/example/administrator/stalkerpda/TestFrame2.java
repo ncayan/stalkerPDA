@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.baidu.mapapi.SDKInitializer;
+import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
 
 /**
@@ -28,6 +29,9 @@ public class TestFrame2 extends Fragment {
         View view=inflater.inflate(R.layout.test_frame2,container,false);
 
         mMapView = (MapView)view.findViewById(R.id.simple_map1);
+        BaiduMap mBaiduMap = mMapView.getMap();
+        mBaiduMap.setMapType(BaiduMap.MAP_TYPE_SATELLITE);
+        mBaiduMap.setTrafficEnabled(false);
         return view;
     }
 
