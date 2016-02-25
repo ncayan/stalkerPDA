@@ -1,6 +1,7 @@
 package com.example.administrator.stalkerpda;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -9,11 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.baidu.mapapi.map.BaiduMapOptions;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.SupportMapFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
+    private SupportMapFragment map;
     private TextView menuItem1;
     private TextView menuItem2;
 
@@ -62,8 +68,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private void initFragment(){
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();
-        TestFrame2 frame2=new TestFrame2();
-        transaction.replace(R.id.main_frame, frame2);
+        TestFrame1 frame1=new TestFrame1();
+        transaction.replace(R.id.main_frame, frame1);
         transaction.commit();
     }
 
@@ -72,4 +78,5 @@ public class MainActivity extends Activity implements View.OnClickListener{
             t.setTextColor(getResources().getColor(R.color.menuUnSelected));
         }
     }
+
 }

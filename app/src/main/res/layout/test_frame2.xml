@@ -3,9 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/bg1p9">
-    <TextView
+    <com.baidu.mapapi.map.MapView
+        android:id="@+id/simple_map1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ww"/>
+        android:layout_height="match_parent"></com.baidu.mapapi.map.MapView>
 
 </LinearLayout>
