@@ -22,6 +22,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private SupportMapFragment map;
     private TextView menuItem1;
     private TextView menuItem2;
+    private TextView menuItem3;
 
     private List<TextView> menuItemList=null;
 
@@ -34,20 +35,23 @@ public class MainActivity extends Activity implements View.OnClickListener{
         menuItemList=new ArrayList<TextView>();
         menuItem1=(TextView)findViewById(R.id.menu_item1);
         menuItem2=(TextView)findViewById(R.id.menu_item2);
+        menuItem3=(TextView)findViewById(R.id.menu_item3);
         menuItemList.add(menuItem1);
         menuItemList.add(menuItem2);
+        menuItemList.add(menuItem3);
         menuItem1.setOnClickListener(this);
         menuItem2.setOnClickListener(this);
+        menuItem3.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        FragmentManager fragmentManager=getFragmentManager();
+        FragmentTransaction transaction=fragmentManager.beginTransaction();
         switch (v.getId()){
             case R.id.menu_item1:
                 menuRedraw();
                 menuItem1.setTextColor(getResources().getColor(R.color.menuSelected));
-                FragmentManager fragmentManager=getFragmentManager();
-                FragmentTransaction transaction=fragmentManager.beginTransaction();
                 TestFrame2 frame2=new TestFrame2();
                 transaction.replace(R.id.main_frame, frame2);
                 transaction.commit();
@@ -55,11 +59,16 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.menu_item2:
                 menuRedraw();
                 menuItem2.setTextColor(getResources().getColor(R.color.menuSelected));
-                FragmentManager fragmentManager2=getFragmentManager();
-                FragmentTransaction transaction2=fragmentManager2.beginTransaction();
                 TestFrame1 frame1=new TestFrame1();
-                transaction2.replace(R.id.main_frame, frame1);
-                transaction2.commit();
+                transaction.replace(R.id.main_frame, frame1);
+                transaction.commit();
+                break;
+            case R.id.menu_item3:
+                menuRedraw();
+                menuItem3.setTextColor(getResources().getColor(R.color.menuSelected));
+                ContactFrame contactFrame=new ContactFrame();
+                transaction.replace(R.id.main_frame, contactFrame);
+                transaction.commit();
                 break;
             default:
         }
