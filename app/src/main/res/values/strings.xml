@@ -1,3 +1,20 @@
 <resources>
-    <string name="app_name">stalkerPDA</string>
+    <!-- 应用名 -->
+    <string name="app_name">ZONE_PDA</string>
+    <string name="app_name_CN">特异区PDA</string>
+    <!-- 菜单分隔符 -->
+    <string name="mainMenuPoint">//</string>
+    <!-- 菜单1 地图/-->
+    <string name="mainMenuItem_1_CN">地  图</string>
+    <!-- 菜单2 主页/-->
+    <string name="mainMenuItem_2_CN">主  页</string>
+    <!-- 菜单3 联络人/-->
+    <string name="mainMenuItem_3_CN">联络人</string>
+    <!-- 菜单4 新闻/-->
+    <string name="mainMenuItem_4_CN">新  闻</string>
+    <!-- 菜单5 ？？？/-->
+    <string name="mainMenuItem_5_CN">地  图</string>
+
+    <!-- 联系人属性_未知 -->
+    <string name="contactProp_unkown_CN">未知</string>
 </resources>

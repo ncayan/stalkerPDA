@@ -1,4 +1,4 @@
-package com.example.administrator.stalkerpda;
+package com.example.administrator.stalkerpda.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,7 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.administrator.stalkerpda.Contact.ContactAdapter;
+import com.example.administrator.stalkerpda.adapter.ContactAdapter;
+import com.example.administrator.stalkerpda.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/2/29.
  */
-public class ContactFrame extends Fragment {
+public class Frame_contacts extends Fragment {
     private Activity activity;
     View view;
     ContactAdapter contactAdapter;
@@ -85,7 +86,6 @@ public class ContactFrame extends Fragment {
                 map.put("stat","态度       中立");
                 map.put("title",displayName);
                 map.put("lev","阶级       士兵");
-
 
                 list.add(map);
             }

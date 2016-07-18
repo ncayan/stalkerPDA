@@ -1,4 +1,4 @@
-package com.example.administrator.stalkerpda.Contact;
+package com.example.administrator.stalkerpda.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

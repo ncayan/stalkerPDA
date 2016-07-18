@@ -1,4 +1,4 @@
-package com.example.administrator.stalkerpda;
+package com.example.administrator.stalkerpda.ui;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -8,13 +8,15 @@ import android.provider.ContactsContract;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.administrator.stalkerpda.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2016/2/26.
  */
-public class ContactList extends Activity {
+public class SubFrame_contact extends Activity {
     private ListView contactList;
     ArrayAdapter<String> adapter;
     List<String> contactsList=new ArrayList<String>();
