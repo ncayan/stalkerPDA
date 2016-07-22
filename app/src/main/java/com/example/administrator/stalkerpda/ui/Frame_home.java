@@ -1,4 +1,4 @@
-package com.example.administrator.stalkerpda;
+package com.example.administrator.stalkerpda.ui;
 
 import android.app.Fragment;
 import android.content.Context;
@@ -14,11 +14,12 @@ import android.view.ViewGroup;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
+import com.example.administrator.stalkerpda.R;
 
 /**
  * Created by Administrator on 2016/2/24.
  */
-public class TestFrame2 extends Fragment {
+public class Frame_home extends Fragment {
     private MapView mMapView;
     @Nullable
     @Override

@@ -5,8 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#494649"
-    tools:context="com.example.administrator.stalkerpda.MainActivity">
+    tools:context=".ui.MainActivity">
 
+    <!-- 主内容页/-->
     <FrameLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
@@ -16,11 +17,13 @@
         android:background="#00ffffff">
         <fragment
             android:id="@+id/main_frame"
-            android:name="com.example.administrator.stalkerpda.BlockFragment"
+            android:name="com.example.administrator.stalkerpda.ui.BlockFragment"
             android:background="#00ffffff"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </FrameLayout>
+
+    <!-- 菜单栏/-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -28,13 +31,15 @@
         android:orientation="horizontal"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
-        android:layout_marginBottom="5dp">
+        android:layout_marginBottom="5dp"
+        android:baselineAligned="false">
         <FrameLayout
             android:layout_weight="2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:gravity="center_vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -45,48 +50,69 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
                 android:gravity="center_vertical">
+                <!-- 菜单1 地图/-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="//"
+                    android:text="@string/mainMenuPoint"
                     android:gravity="center" />
                 <TextView
                     android:id="@+id/menu_item1"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="item1"
+                    android:text="@string/mainMenuItem_1_CN"
                     android:typeface="serif"
                     android:textColor="@color/menuUnSelected" />
+
+                <!-- 菜单2 空白/-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:layout_height="match_parent"
-                    android:text="//"/>
+                    android:text="@string/mainMenuPoint"/>
                 <TextView
                     android:id="@+id/menu_item2"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:text="item2"
+                    android:text="@string/mainMenuItem_2_CN"
                     android:typeface="serif"
                     android:textColor="@color/menuUnSelected" />
+
+                <!-- 菜单3 联系人/-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:layout_height="match_parent"
-                    android:text="//"/>
+                    android:text="@string/mainMenuPoint"/>
                 <TextView
                     android:id="@+id/menu_item3"
                     android:layout_width="wrap_content"
                     android:gravity="center"
                     android:layout_height="match_parent"
-                    android:text="item3"
+                    android:text="@string/mainMenuItem_3_CN"
+                    android:typeface="serif"
+                    android:textColor="@color/menuUnSelected" />
+
+                <!-- 菜单4 新闻/-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:text="@string/mainMenuPoint"/>
+                <TextView
+                    android:id="@+id/menu_item4"
+                    android:layout_width="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="match_parent"
+                    android:text="@string/mainMenuItem_4_CN"
                     android:typeface="serif"
                     android:textColor="@color/menuUnSelected" />
             </LinearLayout>
         </FrameLayout>
 
+        <!-- 时钟/-->
         <FrameLayout
             android:layout_weight="1"
             android:layout_width="0dp"

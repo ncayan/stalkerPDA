@@ -1,21 +1,19 @@
-package com.example.administrator.stalkerpda;
+package com.example.administrator.stalkerpda.ui;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.baidu.mapapi.map.BaiduMapOptions;
-import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.SupportMapFragment;
+import com.example.administrator.stalkerpda.R;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.bmob.v3.Bmob;
 
 public class MainActivity extends Activity implements View.OnClickListener{
 
@@ -32,7 +30,11 @@ public class MainActivity extends Activity implements View.OnClickListener{
         setContentView(R.layout.activity_main);
         initFragment();
 
+        // 初始化 Bmob SDK
+        // 使用时请将第二个参数Application ID替换成你在Bmob服务器端创建的Application ID
+        Bmob.initialize(this, "e89d75ae02ac1c2489d1f0e8ad8cad38");
         menuItemList=new ArrayList<TextView>();
+
         menuItem1=(TextView)findViewById(R.id.menu_item1);
         menuItem2=(TextView)findViewById(R.id.menu_item2);
         menuItem3=(TextView)findViewById(R.id.menu_item3);
@@ -52,21 +54,21 @@ public class MainActivity extends Activity implements View.OnClickListener{
             case R.id.menu_item1:
                 menuRedraw();
                 menuItem1.setTextColor(getResources().getColor(R.color.menuSelected));
-                TestFrame2 frame2=new TestFrame2();
+                Frame_home frame2=new Frame_home();
                 transaction.replace(R.id.main_frame, frame2);
                 transaction.commit();
                 break;
             case R.id.menu_item2:
                 menuRedraw();
                 menuItem2.setTextColor(getResources().getColor(R.color.menuSelected));
-                TestFrame1 frame1=new TestFrame1();
+                Frame_map frame1=new Frame_map();
                 transaction.replace(R.id.main_frame, frame1);
                 transaction.commit();
                 break;
             case R.id.menu_item3:
                 menuRedraw();
                 menuItem3.setTextColor(getResources().getColor(R.color.menuSelected));
-                ContactFrame contactFrame=new ContactFrame();
+                Frame_contacts contactFrame=new Frame_contacts();
                 transaction.replace(R.id.main_frame, contactFrame);
                 transaction.commit();
                 break;
@@ -77,7 +79,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
     private void initFragment(){
         FragmentManager fragmentManager=getFragmentManager();
         FragmentTransaction transaction=fragmentManager.beginTransaction();
-        TestFrame1 frame1=new TestFrame1();
+        Frame_map frame1=new Frame_map();
         transaction.replace(R.id.main_frame, frame1);
         transaction.commit();
     }

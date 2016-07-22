@@ -1,7 +1,8 @@
-package com.example.administrator.stalkerpda;
+package com.example.administrator.stalkerpda.ui;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,10 +11,16 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.administrator.stalkerpda.Contact.ContactAdapter;
+import com.example.administrator.stalkerpda.adapter.ContactAdapter;
+import com.example.administrator.stalkerpda.R;
+import com.example.administrator.stalkerpda.adapter.SMSAdapter;
+import com.example.administrator.stalkerpda.model.Contact;
+import com.example.administrator.stalkerpda.until.ContactsHelper;
+import com.example.administrator.stalkerpda.until.SMSHelper;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -25,28 +32,49 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/2/29.
  */
-public class ContactFrame extends Fragment {
-    private Activity activity;
+public class Frame_contacts extends Fragment {
     View view;
-    ContactAdapter contactAdapter;
+    Context context;
+    private ViewGroup container;
     private ListView contactList;
+    private ListView SMSList;
     ArrayAdapter<String> adapter;
     List<String> contactsList=new ArrayList<String>();
+    List<Contact> contacts = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        view=inflater.inflate(R.layout.contact_list,container,false);
-        contactList=(ListView)view.findViewById(R.id.contact_listview);
-        adapter=new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_list_item_1,contactsList);
+        view = inflater.inflate(R.layout.contact_list,container,false);
+        context = view.getContext();
+        contactList = (ListView)view.findViewById(R.id.contact_listview);
+        SMSList = (ListView)view.findViewById(R.id.message_listview);
+        contacts = ContactsHelper.readAllContacts(view);
+        adapter = new ArrayAdapter<String>(view.getContext(),android.R.layout.simple_list_item_1,contactsList);
         //adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,contactsList);
-        List<Map<String, Object>> list=getData();
-        contactList.setAdapter(new ContactAdapter(container.getContext(), list));
-
+        //List<Map<String, Object>> list=getData();
+        contactList.setAdapter(new ContactAdapter(container.getContext(),contacts));
+        contactList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Contact contact = contacts.get(position);
+                String Name = contact.getName();
+                refreshSMS(Name);
+            }
+        });
+        this.container = container;
         return view;
     }
 
-    private void readContacts(){
+    public void refreshSMS( String Name ){
+        SMSList.setAdapter(new SMSAdapter(container.getContext(), SMSHelper.findSMSByContactName("",context)));
+    }
+
+    public void refreshSMS( int postision ){
+        SMSList.setAdapter(new SMSAdapter(container.getContext(),null));
+    }
+
+    /*private void readContacts(){
         String ognization="组织       独行者";
         String status="态度       中立";
         String shengw="声望       中立";
@@ -67,9 +95,10 @@ public class ContactFrame extends Fragment {
                 cursor.close();
             }
         }
-    }
+    }*/
 
-    public List<Map<String, Object>> getData(){
+
+    /*public List<Map<String, Object>> getData(){
         List<Map<String, Object>> list=new ArrayList<Map<String,Object>>();
         Cursor cursor=null;
         try{
@@ -86,7 +115,6 @@ public class ContactFrame extends Fragment {
                 map.put("title",displayName);
                 map.put("lev","阶级       士兵");
 
-
                 list.add(map);
             }
         }catch (Exception e){
@@ -98,7 +126,7 @@ public class ContactFrame extends Fragment {
         }
 
         return list;
-    }
+    }*/
 
     public void readeSMS(){
         final String SMS_URI_ALL = "content://sms/";
@@ -109,8 +137,8 @@ public class ContactFrame extends Fragment {
         final String SMS_URI_FAILED = "content://sms/failed";
         final String SMS_URI_QUEUED = "content://sms/queued";
         StringBuilder smsBuilder = new StringBuilder();
-        Uri uri=Uri.parse(SMS_URI_ALL);
-        Cursor cursor=null;
+        Uri uri = Uri.parse(SMS_URI_ALL);
+        Cursor cursor = null;
         String[] projection = new String[] { "_id", "address", "person", "body", "date", "type" };
         cursor=view.getContext().getContentResolver().query(uri,projection,null,null,"date desc");
         int index_Address = cursor.getColumnIndex("address");
